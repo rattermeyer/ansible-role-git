@@ -1,0 +1,7 @@
+---
+# defaults file for git
+home: "/home/{{user.account}}"
+editor: vim
+mergetool: meld
+autocrlf: input
+credential_cache_timeout: 1800

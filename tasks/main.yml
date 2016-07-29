@@ -1,0 +1,31 @@
+---
+# tasks file for git
+- debug: msg="{{user}}"
+- assert:
+    that:
+      - user is defined
+      - user.name is defined
+      - user.email is defined
+      - user.account is defined
+
+- name: Install packages
+  apt: name="{{item}}"
+  with_items:
+    - git
+    - tig
+    - gitk
+    - meld
+
+- block:
+    - name: install git prompt
+      git: repo=https://github.com/magicmonty/bash-git-prompt.git dest={{home}}/.bash-git-prompt
+    - lineinfile: dest={{home}}/.bashrc line='GIT_PROMPT_ONLY_IN_REPO=1' insertafter=EOF
+    - lineinfile: dest={{home}}/.bashrc line='GIT_PROMPT_THEME=Solarized' insertafter=EOF
+    - lineinfile: dest={{home}}/.bashrc line='source ~/.bash-git-prompt/gitprompt.sh' insertafter=EOF
+    - name: Git configuration
+      template: src=gitconfig.j2 dest="{{home}}/.gitconfig" owner="{{user.account}}" group="{{user.account}}" mode=0664
+      tags:
+        - configuration
+        - dev-tools
+  become: true
+  become_user: "{{user.account}}"
