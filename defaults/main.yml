@@ -5,3 +5,12 @@ editor: vim
 mergetool: meld
 autocrlf: input
 credential_cache_timeout: 1800
+packages_nonx11:
+  - git
+  - tig
+  - bash-completion
+  - vim
+packages_x11:
+  - gitk
+  - meld
+gui_enabled: true

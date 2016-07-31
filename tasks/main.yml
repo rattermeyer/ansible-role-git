@@ -8,13 +8,24 @@
       - user.email is defined
       - user.account is defined
 
-- name: Install packages
+- name: Install packages (non x11)
   apt: name="{{item}}"
-  with_items:
-    - git
-    - tig
-    - gitk
-    - meld
+  with_items: "{{packages_nonx11}}"
+
+- name: Install packages (x11)
+  apt: name="{{item}}"
+  with_items: "{{packages_x11}}"
+  when: gui_enabled is defined and gui_enabled == True
+
+- name: register installed git version
+  shell: "dpkg -s git | grep Version | awk '{print $2}' | cut -d: -f2 | cut -d- -f1"
+  register: git_version
+  changed_when: False
+
+- name: Install git bash completion
+  get_url:
+    dest: /etc/bash_completion.d/git-completion
+    url: "https://raw.githubusercontent.com/git/git/v{{git_version.stdout}}/contrib/completion/git-completion.bash"
 
 - block:
     - name: install git prompt
@@ -22,10 +33,8 @@
     - lineinfile: dest={{home}}/.bashrc line='GIT_PROMPT_ONLY_IN_REPO=1' insertafter=EOF
     - lineinfile: dest={{home}}/.bashrc line='GIT_PROMPT_THEME=Solarized' insertafter=EOF
     - lineinfile: dest={{home}}/.bashrc line='source ~/.bash-git-prompt/gitprompt.sh' insertafter=EOF
+
     - name: Git configuration
       template: src=gitconfig.j2 dest="{{home}}/.gitconfig" owner="{{user.account}}" group="{{user.account}}" mode=0664
-      tags:
-        - configuration
-        - dev-tools
   become: true
   become_user: "{{user.account}}"
