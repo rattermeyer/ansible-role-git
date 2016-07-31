@@ -1,8 +1,22 @@
 ---
 # tasks file for git
+- name: set merge tool
+  set_fact:
+    git_m:
+      merge:
+        tool: meld
+  when: gui_enabled is defined and gui_enabled == True
+
+- name: set merge tool
+  set_fact:
+    git_m:
+      merge:
+        tool: vimdiff
+  when: gui_enabled is undefined or gui_enabled == False
+
 - name: combine provided and default git settings
   set_fact:
-    git_result: "{{git_default | combine( git, recursive=True ) }}"
+    git_result: "{{git_default | combine( git, git_m, recursive=True ) }}"
 
 - name: Check that mandatory variables are defined
   assert:

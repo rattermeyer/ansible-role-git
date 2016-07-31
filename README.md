@@ -5,7 +5,7 @@ This role installs git and some additional tools and installs a gitconfig file.
 ## Slightly longer explanation
 
 If nothing else is specified, this role will install git, tig, meld, vim, gitk
-and bash_completion as additional packages.
+and bash_completion as additional packages. It also installs the [git bash prompt](https://github.com/magicmonty/bash-git-prompt).
 
 It then starts configuring git with an opinionated gitconfig file.
 
@@ -67,16 +67,15 @@ See example playbooks.
 The variables below can all be overridden when calling this role.
 As mentioned above, only very few are mandatory.
 
+The packages_x11 are only installed if `gui_enabled` is set to `True`.
+If `gui_enabled` is `True` the merge tool will be meld, otherwise vimdiff.
+
 ```yaml
 ---
 # defaults file for git
 home: "/home/{{git.user.account}}"
 git_bash_prompt_version: "2.5.1"
 git_bash_prompt_theme: Solarized
-editor: vim
-mergetool: meld
-autocrlf: input
-credential_cache_timeout: 1800
 packages_nonx11:
   - git
   - tig
@@ -121,6 +120,8 @@ git_default:
     clean: "git-lfs clean %f"
     smudge: "git-lfs smudge %f"
     required: true
+  push:
+    default: simple
 ```
 
 ## Dependencies

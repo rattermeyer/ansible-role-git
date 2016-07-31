@@ -41,7 +41,8 @@
 	clean = {{git_result.filter_lfs.clean}}
 	smudge = {{git_result.filter_lfs.smudge}}
   required = {{git_result.filter_lfs.required}}
-
+[push]
+	default = {{git_result.push.default}}
 [alias]
     # basic
     st = status -s

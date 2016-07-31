@@ -3,10 +3,6 @@
 home: "/home/{{git.user.account}}"
 git_bash_prompt_version: "2.5.1"
 git_bash_prompt_theme: Solarized
-editor: vim
-mergetool: meld
-autocrlf: input
-credential_cache_timeout: 1800
 packages_nonx11:
   - git
   - tig
@@ -51,3 +47,5 @@ git_default:
     clean: "git-lfs clean %f"
     smudge: "git-lfs smudge %f"
     required: true
+  push:
+    default: simple
