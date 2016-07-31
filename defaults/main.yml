@@ -17,10 +17,6 @@ packages_x11:
   - meld
 gui_enabled: true
 git_default:
-  user:
-    name: Richard Attermeyer
-    email: richard.attermeyer@gmail.com
-    account: richard
   core:
     editor: vim
     autocrlf: input
