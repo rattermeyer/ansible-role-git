@@ -1,46 +1,46 @@
 [user]
-	name = {{git.user.name}}
-	email = {{git.user.email}}
+	name = {{git_result.user.name | mandatory}}
+	email = {{git_result.user.email | mandatory}}
 [core]
-	editor = {{git.core.editor}}
-	autocrlf = {{git.core.autocrlf}} ;
+	editor = {{git_result.core.editor}}
+	autocrlf = {{git_result.core.autocrlf}} ;
 
 [merge]
-	tool = {{git.merge.tool}}
+	tool = {{git_result.merge.tool}}
 [credential]
-  helper = {{git.credential.helper}}
+  helper = {{git_result.credential.helper}}
 
 [color]
-	ui = {{git.color.ui}}
-  branch = {{git.color.branch}}
-  diff = {{git.color.diff}}
-  status = {{git.color.status}}
+	ui = {{git_result.color.ui}}
+  branch = {{git_result.color.branch}}
+  diff = {{git_result.color.diff}}
+  status = {{git_result.color.status}}
 
 [color "branch"]
-  current = {{git.color_branch.current}}
-  local = {{git.color_branch.local}}
-  remote = {{git.color_branch.remote}}
+  current = {{git_result.color_branch.current}}
+  local = {{git_result.color_branch.local}}
+  remote = {{git_result.color_branch.remote}}
 
 [color "diff"]
-  meta = {{git.color_diff.meta}}
-  frag = {{git.color_diff.frag}}
-  old = {{git.color_diff.old}}
-  new = {{git.color_diff.new}}
-  plain = {{git.color_diff.plain}}
+  meta = {{git_result.color_diff.meta}}
+  frag = {{git_result.color_diff.frag}}
+  old = {{git_result.color_diff.old}}
+  new = {{git_result.color_diff.new}}
+  plain = {{git_result.color_diff.plain}}
 
 [color "status"]
-  added = {{git.color_status.added}}
-  changed = {{git.color_status.changed}}
-  untracked = {{git.color_status.untracked}}
+  added = {{git_result.color_status.added}}
+  changed = {{git_result.color_status.changed}}
+  untracked = {{git_result.color_status.untracked}}
 
 [rerere]
-  enabled = {{git.rerere.enabled}}
+  enabled = {{git_result.rerere.enabled}}
 [rebase]
-  autosquash = {{git.rebase.autosquash}}
+  autosquash = {{git_result.rebase.autosquash}}
 [filter "lfs"]
-	clean = {{git.filter_lfs.clean}}
-	smudge = {{git.filter_lfs.smudge}}
-  required = {{git.filter_lfs.required}}
+	clean = {{git_result.filter_lfs.clean}}
+	smudge = {{git_result.filter_lfs.smudge}}
+  required = {{git_result.filter_lfs.required}}
 
 [alias]
     # basic
