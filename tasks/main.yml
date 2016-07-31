@@ -1,10 +1,11 @@
 ---
 # tasks file for git
-- set_fact:
+- name: combine provided and default git settings
+  set_fact:
     git_result: "{{git_default | combine( git, recursive=True ) }}"
-- debug: msg="{{git_result}}"
 
-- assert:
+- name: Check that mandatory variables are defined
+  assert:
     that:
       - git is defined
       - git.user.account is defined
