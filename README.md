@@ -70,6 +70,9 @@ As mentioned above, only very few are mandatory.
 The packages_x11 are only installed if `gui_enabled` is set to `True`.
 If `gui_enabled` is `True` the merge tool will be meld, otherwise vimdiff.
 
+The git bash prompt version and theme can be customized using the
+`git_bash_prompt` variables.
+
 ```yaml
 ---
 # defaults file for git
