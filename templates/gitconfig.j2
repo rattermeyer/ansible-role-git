@@ -97,7 +97,7 @@
     dc = diff --cached
 
 		## commits to be pushed
-		ctbp = "!f() { curr_branch=`git branch | awk '{print $2}'` && git log origin/$curr_branch..$curr_branch ; }; f"
+		ctbp = "!f() { curr_branch=`git branch | grep \"*\" | awk '{print $2}'` && git log origin/$curr_branch..$curr_branch ; }; f"
 
     # diff last commit
     dlc = diff --cached HEAD^
