@@ -5,7 +5,7 @@ This role installs git and some additional tools and installs a gitconfig file.
 ## Slightly longer explanation
 
 If nothing else is specified, this role will install git, tig, meld, vim, gitk
-and bash_completion as additional packages. It also installs the [git bash prompt](https://github.com/magicmonty/bash-git-prompt).
+and bash\_completion as additional packages. It also installs the [git bash prompt](https://github.com/magicmonty/bash-git-prompt).
 
 It then starts configuring git with an opinionated gitconfig file.
 
