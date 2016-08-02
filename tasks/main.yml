@@ -1,5 +1,11 @@
 ---
 # tasks file for git
+- name: Check that mandatory variables are defined
+  assert:
+    that:
+      - git is defined
+      - git.user.account is defined
+
 - name: set merge tool
   set_fact:
     git_m:
@@ -18,11 +24,6 @@
   set_fact:
     git_result: "{{git_default | combine( git, git_m, recursive=True ) }}"
 
-- name: Check that mandatory variables are defined
-  assert:
-    that:
-      - git is defined
-      - git.user.account is defined
 
 - name: Install packages (non x11)
   apt: name="{{item}}"
